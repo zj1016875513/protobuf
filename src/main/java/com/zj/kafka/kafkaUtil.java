@@ -19,7 +19,7 @@ public class kafkaUtil {
         props.setProperty("value.deserializer",String.valueOf(ByteArrayDeserializer.class));
 //        props.setProperty("isolation.level","read_committed");
         props.setProperty("enable.auto.commit","true");
-        props.setProperty("auto.offset.reset","latest");
+        props.setProperty("auto.offset.reset","earliest");
         props.setProperty("session.timeout.ms","240000");
         props.setProperty("fetch.max.wait.ms","240000");
         props.setProperty("request.timeout.ms","250000");
