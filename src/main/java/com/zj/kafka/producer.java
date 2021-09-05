@@ -29,7 +29,7 @@ public class producer {
 //        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(properties);
         for (int i = 0; i < 10; i++) {
-            kafkaProducer.send(new ProducerRecord<String, String>("test1", "atguigu" + i));
+            kafkaProducer.send(new ProducerRecord<String, String>("ttt", "zijiang" + i));
 //            kafkaProducer.send(new ProducerRecord<String, String>("first", "atguigu" + i)).get();
         }
         kafkaProducer.close();
@@ -57,7 +57,9 @@ public class producer {
             builder.setAddress("shenzhen-"+i);
             builder.setRegisterTime("2021-01-01");
             VIP.User user = builder.build();
-            kafkaProducer.send(new ProducerRecord<>("protoTest", user.getName().getBytes(StandardCharsets.UTF_8), user.toByteArray()));
+//            kafkaProducer.send(new ProducerRecord<>("protoTest", user.getName().getBytes(StandardCharsets.UTF_8), user.toByteArray()));
+//            kafkaProducer.send(new ProducerRecord<>("only1",null, user.toByteArray()));
+            kafkaProducer.send(new ProducerRecord<>("protoTest",null, user.toByteArray()));
         }
         kafkaProducer.close();
     }
