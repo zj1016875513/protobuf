@@ -33,7 +33,7 @@ public class Flink_Kafka_Protobuf_Json {
 //                        System.out.println(result);
                         return result;
                     }
-                }).print();
+                }).print("main");
         env.execute(Flink_Kafka_Protobuf_Json.class.getSimpleName());
     }
 }
