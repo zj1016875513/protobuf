@@ -1,9 +1,9 @@
 syntax = "proto3";
 option java_package = "com.zj.testProto";//生成文件存放的路径
-option java_outer_classname = "VIP";//生成类的名
-//option java_multiple_files=true;
+option java_outer_classname = "school";//生成类的名
+option java_multiple_files=true;
 
-message User {
+message SmallStudent {
   int32 id = 1;
   string name = 2;
   int32 age = 3;

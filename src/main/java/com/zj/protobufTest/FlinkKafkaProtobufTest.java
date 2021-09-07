@@ -5,13 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.zj.kafka.Person;
 import com.zj.kafka.kafkaUtil;
-import com.zj.proto.VIP;
+import com.zj.testProto.VIP;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.runtime.state.filesystem.FsStateBackend;
 import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.ProcessFunction;
-import org.apache.flink.table.descriptors.Json;
+
 import org.apache.flink.util.Collector;
 
 public class FlinkKafkaProtobufTest {
@@ -75,7 +75,7 @@ public class FlinkKafkaProtobufTest {
 
         System.setProperty("HADOOP_USER_NAME", "atguigu");
         env.setStateBackend(new FsStateBackend("file:///D:/IDEAworkspace/flink_mytest/output/checkpoint"));
-//        env.setStateBackend(new FsStateBackend("hdfs://hadoop162:8020/checkpoint"));
+        env.setStateBackend(new FsStateBackend("hdfs://hadoop162:8020/checkpoint"));
         env.enableCheckpointing(3000);
         env.getCheckpointConfig().setCheckpointTimeout(60 * 1000);
         env.getCheckpointConfig()

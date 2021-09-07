@@ -1,6 +1,6 @@
 package com.zj.protobufTest;
 
-import com.zj.proto.VIP;
+import com.zj.testProto.VIP;
 import org.junit.Test;
 
 public class protoTest {

@@ -1,8 +1,9 @@
 package com.zj.kafka;
 
-import com.zj.proto.VIP;
+import com.zj.testProto.VIP;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class producer {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -36,15 +38,15 @@ public class producer {
     }
 
     @Test
-    public void protobufProducer(){
+    public void protobufProducer() throws InterruptedException {
         Properties properties = new Properties();
         properties.put("bootstrap.servers","hadoop102:9092,hadoop103:9092,hadoop104:9092");
 //        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "hadoop102:9092");
-//        properties.put("acks", "all");
-//        properties.put("retries", 3);
-//        properties.put("batch.size", 16384);
-//        properties.put("linger.ms", 1);
-//        properties.put("buffer.memory", 33554432);
+        properties.put("acks", "all");
+        properties.put("retries", 3);
+        properties.put("batch.size", 16384);
+        properties.put("linger.ms", 1);
+        properties.put("buffer.memory", 33554432);
         properties.put("key.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
         properties.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
 //        ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG
@@ -57,9 +59,10 @@ public class producer {
             builder.setAddress("shenzhen-"+i);
             builder.setRegisterTime("2021-01-01");
             VIP.User user = builder.build();
+            TimeUnit.MILLISECONDS.sleep(500);
 //            kafkaProducer.send(new ProducerRecord<>("protoTest", user.getName().getBytes(StandardCharsets.UTF_8), user.toByteArray()));
 //            kafkaProducer.send(new ProducerRecord<>("only1",null, user.toByteArray()));
-            kafkaProducer.send(new ProducerRecord<>("protoTest",null, user.toByteArray()));
+            kafkaProducer.send(new ProducerRecord<>("protoTest", user.toByteArray()));
         }
         kafkaProducer.close();
     }

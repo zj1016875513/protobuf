@@ -2,7 +2,7 @@ package com.zj.kafka;
 
 import com.alibaba.fastjson.JSON;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.zj.proto.VIP;
+import com.zj.testProto.VIP;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
